@@ -16,6 +16,7 @@ public class Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "username")
 	private String name;
 
 	private String country;
