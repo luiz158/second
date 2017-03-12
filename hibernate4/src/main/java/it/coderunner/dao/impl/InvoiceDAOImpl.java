@@ -20,12 +20,22 @@ public class InvoiceDAOImpl implements InvoiceDAO {
         this.sessionFactory = sessionFactory;
     }
     
-	public void save(Invoice i) {
+	public Invoice save(Invoice i) {
 		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		session.persist(i);
 		tx.commit();
 		session.close();
+		return i;
+	}
+	
+	public Invoice update(Invoice i) {
+		Session session = this.sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.saveOrUpdate(i);
+		tx.commit();
+		session.close();
+		return i;
 	}
 
 	@SuppressWarnings("unchecked")

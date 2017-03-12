@@ -13,34 +13,48 @@ public class SpringHibernateMain {
 	public static void main(String[] args) {
 
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		ClassPathXmlApplicationContext context1 = new ClassPathXmlApplicationContext("spring.xml");
 		
 		PersonDAO personDAO = context.getBean(PersonDAO.class);
 		
 		Person person = new Person();
 		person.setName("Michał");
 		person.setCountry("Poland");
-		
+		int i=1;
+		Person personToUpdate = new Person();
+		personToUpdate=personDAO.selectByID(i);
+		personToUpdate.setName("Jan");
+		personDAO.update(personToUpdate);
 
-		personDAO.save(person);
+		
+		System.out.println(personDAO.save(person));
+//		person.setName("Krzysztof");
+//		System.out.println(personDAO.update(person));
 		
 		System.out.println("Person::" + person);
-
+		
 		personDAO.list().forEach(System.out::println);
+		System.out.println(personDAO.selectByID(i));
+		
 
-		context.close();
-
-		InvoiceDAO invoiceDAO = context1.getBean(InvoiceDAO.class);
+		InvoiceDAO invoiceDAO = context.getBean(InvoiceDAO.class);
 
 		Invoice invoice = new Invoice();
 		invoice.setDate("21.03.2015");
 		invoice.setSum(15500.99);
+		invoice.setPerson(person);
+		
+		Invoice invoice2 = new Invoice();
+		invoice2.setDate("01.01.2017");
+		invoice2.setSum(125500.00);
+		invoice2.setPerson(person);
 
-		invoiceDAO.save(invoice);
+		System.out.println(invoiceDAO.save(invoice));
+		System.out.println(invoiceDAO.save(invoice2));
 		invoiceDAO.list().forEach(System.out::println);
 	
 		System.out.println("Invoice::" + invoice);
-		context1.close();
+		System.out.println(personDAO.selectByID(i).getSetInv());
+		context.close();
 	}
 
 }
