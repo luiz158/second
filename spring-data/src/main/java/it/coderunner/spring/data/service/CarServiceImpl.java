@@ -39,5 +39,10 @@ public class CarServiceImpl implements CarService{
 	public List<Car> findFirst10ByManufacturer(String manufacturer) {
 		return carRepository.findFirst10ByManufacturer(manufacturer);
 	}
+	
+	@Override
+	public List<Car> findByProdYearGreaterThan(String prodYear) {
+		return carRepository.findByProdYearGreaterThan(prodYear);
+	}
 
 }

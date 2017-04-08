@@ -16,6 +16,8 @@ public interface CarService extends Serializable{
 	
 	List<Car> findFirst10ByManufacturer(String manufacturer);
 	
+	List<Car> findByProdYearGreaterThan(String prodYear);
+	
 	Page<Car> findAll(Pageable pageable);
 
 }

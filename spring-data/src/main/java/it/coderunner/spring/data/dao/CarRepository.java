@@ -17,6 +17,8 @@ public interface CarRepository extends CrudRepository<Car, Long>{
 
 	Car findByManufacturerAndModelAndProdYearAllIgnoringCase(String manufacturer, String model, String prodYear);
 	
+	List<Car> findByProdYearGreaterThan(String prodYear);
+	
 	List<Car> findFirst10ByManufacturer(String manufacturer);
 	
 	@SuppressWarnings("unchecked")

@@ -45,6 +45,15 @@ public class CarController {
 				: new ResponseEntity<String>("No car found", HttpStatus.NOT_FOUND);
 	}
 
+	@GetMapping("/get/carsManufacturedAfter/{prodYear}")
+	public @ResponseBody ResponseEntity<String> getByprodYearGreaterThan(@PathVariable String prodYear) {
+		List<Car> cars = carService.findByProdYearGreaterThan(prodYear);
+		cars.stream().forEach(System.out::println);
+		return cars != null && !cars.isEmpty()
+				? new ResponseEntity<String>("GET Response : " + cars, HttpStatus.OK)
+				: new ResponseEntity<String>("No car found", HttpStatus.NOT_FOUND);
+	}
+	
 	@GetMapping("/get/allCars/{page}/{size}")
 	public @ResponseBody Page<Car> getTop10cars(@PathVariable Integer page, @PathVariable Integer size) {
 		return carService.findAll(new PageRequest(page, size));
