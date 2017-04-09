@@ -19,12 +19,13 @@ public class Material implements Serializable{
 	
 	private static final long serialVersionUID = -5153096510175773811L;
 	
-	@OneToMany(mappedBy = "material")
+	@OneToMany(mappedBy="material")
 	public Part part;
 	
 	@Id
+	@Column (name="material_id")
 	@GeneratedValue
-	private long id;
+	private long materialId;
 	
 	@Column
 	private String name;

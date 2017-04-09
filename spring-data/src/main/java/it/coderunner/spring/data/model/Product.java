@@ -21,7 +21,7 @@ public class Product implements Serializable {
 
 	private static final long serialVersionUID = 753492514662450882L;
 
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy="product")
 	private Set<Part> parts;
 	
 	@Id
@@ -31,10 +31,10 @@ public class Product implements Serializable {
 	@Column 
 	private String name;
 	
-	@Column 
+	@Column(name="prod_year")
 	private String prodYear;
 	
-	@Column
+	@Column(name="declaration_of_conformity")
 	private String declOfConf;
 	
 	public Product(String name, String prodYear, String declOfConf){
@@ -42,7 +42,5 @@ public class Product implements Serializable {
 		this.prodYear = prodYear;
 		this.declOfConf = declOfConf;
 	}
-	
-	
 	
 }

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,12 @@ public class Supplier implements Serializable{
 	private static final long serialVersionUID = -7672689326132913015L;
 
 	@Id
+	@Column(name="supplier_id")
 	@GeneratedValue
-	private long id;
+	private long supplierId;
+	
+	@OneToMany(mappedBy="supplier")
+	private Part part;
 	
 	@Column
 	private String name;
